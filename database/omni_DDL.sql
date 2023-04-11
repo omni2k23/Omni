@@ -1,15 +1,3 @@
--- Database: omniDB
-
-CREATE DATABASE "omniDB"
-    WITH
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'C'
-    LC_CTYPE = 'C'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1
-    IS_TEMPLATE = False;
-
 -- SCHEMA: public
 
 -- DROP SCHEMA IF EXISTS public ;
@@ -50,6 +38,32 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.customer
     OWNER to postgres;
 
+-- Table: public.driver
+
+-- DROP TABLE IF EXISTS public.driver;
+
+CREATE TABLE IF NOT EXISTS public.driver
+(
+    driver_id integer NOT NULL,
+    email text COLLATE pg_catalog."default",
+    password text COLLATE pg_catalog."default",
+    first_name text COLLATE pg_catalog."default",
+    last_name text COLLATE pg_catalog."default",
+    phone_number text COLLATE pg_catalog."default",
+    vehicle_type text COLLATE pg_catalog."default",
+    license_number text COLLATE pg_catalog."default",
+    year integer,
+    make text COLLATE pg_catalog."default",
+    model text COLLATE pg_catalog."default",
+    CONSTRAINT driver_pkey PRIMARY KEY (driver_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.driver
+    OWNER to postgres;
+
+
 -- Table: public.delivery
 
 -- DROP TABLE IF EXISTS public.delivery;
@@ -76,31 +90,6 @@ CREATE TABLE IF NOT EXISTS public.delivery
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.delivery
-    OWNER to postgres;
-
--- Table: public.driver
-
--- DROP TABLE IF EXISTS public.driver;
-
-CREATE TABLE IF NOT EXISTS public.driver
-(
-    driver_id integer NOT NULL,
-    email text COLLATE pg_catalog."default",
-    password text COLLATE pg_catalog."default",
-    first_name text COLLATE pg_catalog."default",
-    last_name text COLLATE pg_catalog."default",
-    phone_number text COLLATE pg_catalog."default",
-    vehicle_type text COLLATE pg_catalog."default",
-    license_number text COLLATE pg_catalog."default",
-    year integer,
-    make text COLLATE pg_catalog."default",
-    model text COLLATE pg_catalog."default",
-    CONSTRAINT driver_pkey PRIMARY KEY (driver_id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.driver
     OWNER to postgres;
 
 -- Table: public.order
