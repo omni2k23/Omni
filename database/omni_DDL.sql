@@ -63,35 +63,6 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.driver
     OWNER to postgres;
 
-
--- Table: public.delivery
-
--- DROP TABLE IF EXISTS public.delivery;
-
-CREATE TABLE IF NOT EXISTS public.delivery
-(
-    "deliveryID" integer NOT NULL,
-    driver_id integer,
-    customer_id integer,
-    store_name text COLLATE pg_catalog."default",
-    store_address text COLLATE pg_catalog."default",
-    status text COLLATE pg_catalog."default",
-    CONSTRAINT delivery_pkey PRIMARY KEY ("deliveryID"),
-    CONSTRAINT customer_id FOREIGN KEY (customer_id)
-        REFERENCES public.customer (customer_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
-    CONSTRAINT driver_id FOREIGN KEY (driver_id)
-        REFERENCES public.driver (driver_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.delivery
-    OWNER to postgres;
-
 -- Table: public.order
 
 -- DROP TABLE IF EXISTS public."order";
@@ -122,4 +93,32 @@ CREATE TABLE IF NOT EXISTS public."order"
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public."order"
+    OWNER to postgres;
+
+-- Table: public.delivery
+
+-- DROP TABLE IF EXISTS public.delivery;
+
+CREATE TABLE IF NOT EXISTS public.delivery
+(
+    delivery_id integer NOT NULL,
+    driver_id integer,
+    customer_id integer,
+    store_name text COLLATE pg_catalog."default",
+    store_address text COLLATE pg_catalog."default",
+    status text COLLATE pg_catalog."default",
+    CONSTRAINT delivery_pkey PRIMARY KEY (delivery_id),
+    CONSTRAINT customer_id FOREIGN KEY (customer_id)
+        REFERENCES public.customer (customer_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT driver_id FOREIGN KEY (driver_id)
+        REFERENCES public.driver (driver_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.delivery
     OWNER to postgres;
