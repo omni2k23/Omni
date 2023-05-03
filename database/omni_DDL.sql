@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS public."order"
     driver_id integer,
     item_name text COLLATE pg_catalog."default",
     item_price numeric,
-	item_picture text COLLATE pg_catalog."default"
-    "total " numeric,
+	item_picture text COLLATE pg_catalog."default",
+    total numeric,
     status text COLLATE pg_catalog."default",
     CONSTRAINT order_pkey PRIMARY KEY (order_id),
     CONSTRAINT customer_id FOREIGN KEY (customer_id)
