@@ -18,7 +18,7 @@ GRANT ALL ON SCHEMA public TO pg_database_owner;
 
 CREATE TABLE IF NOT EXISTS public.customer
 (
-    customer_id integer NOT NULL,
+    customer_id SERIAL,
     email text COLLATE pg_catalog."default",
     password text COLLATE pg_catalog."default",
     first_name text COLLATE pg_catalog."default",
@@ -44,7 +44,7 @@ ALTER TABLE IF EXISTS public.customer
 
 CREATE TABLE IF NOT EXISTS public.driver
 (
-    driver_id integer NOT NULL,
+    driver_id SERIAL,
     email text COLLATE pg_catalog."default",
     password text COLLATE pg_catalog."default",
     first_name text COLLATE pg_catalog."default",
@@ -69,15 +69,16 @@ ALTER TABLE IF EXISTS public.driver
 
 CREATE TABLE IF NOT EXISTS public."order"
 (
-    order_id integer NOT NULL,
-    order_number integer,
+    order_id SERIAL ,
+    order_number SERIAL,
     order_datetime timestamp without time zone,
     store_name text COLLATE pg_catalog."default",
     customer_id integer,
     driver_id integer,
     item_name text COLLATE pg_catalog."default",
     item_price numeric,
-    "total " numeric,
+	item_picture text COLLATE pg_catalog."default",
+    total numeric,
     status text COLLATE pg_catalog."default",
     CONSTRAINT order_pkey PRIMARY KEY (order_id),
     CONSTRAINT customer_id FOREIGN KEY (customer_id)
@@ -101,7 +102,7 @@ ALTER TABLE IF EXISTS public."order"
 
 CREATE TABLE IF NOT EXISTS public.delivery
 (
-    delivery_id integer NOT NULL,
+    delivery_id SERIAL,
     driver_id integer,
     customer_id integer,
     store_name text COLLATE pg_catalog."default",
