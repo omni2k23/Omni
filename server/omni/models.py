@@ -34,7 +34,7 @@ class Driver(models.Model):
     class Meta:
         db_table = 'driver'
 
-class Orders(models.Model):
+class Order(models.Model):
     order_id = models.IntegerField(primary_key=True)
     order_number = models.IntegerField()
     order_datetime = models.DateTimeField()
@@ -49,7 +49,7 @@ class Orders(models.Model):
     class Meta:
         db_table = 'order'
     
-class Deliveries(models.Model):
+class Delivery(models.Model):
     delivery_id = models.IntegerField(primary_key=True)
     customer_id = models.ForeignKey('Customer', on_delete=models.CASCADE, db_column='customer_id')
     driver_id = models.ForeignKey('Driver', on_delete=models.CASCADE, db_column='driver_id')
